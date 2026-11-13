@@ -331,15 +331,16 @@ body{background:#f5f5f6;color:#0e0923}
 <!-- ===== Strategy asset timeline ===== -->
 <section class="st-intro"><p class="bp-eyebrow" style="color:#0068af">Strategy assets, version-controlled</p><h2>Commit once. Every related asset stays in step.</h2><p>Draft strategy assets with AI, commit them when they are ready, and keep one source of truth that every downstream asset works from, without ever starting over.</p></section>
 <!-- STEPS LIVE HERE: edit this JSON to change the timeline text.
-     "art" picks the graphic: draft, commit, source, notify, iterate, again -->
+     "art" picks the graphic: draft, rubric, commit, source, notify, iterate, again -->
 <script type="application/json" id="st-steps">
 {"steps":[
  {"art":"draft","title":"Draft with AI","text":"Create your strategy asset, like positioning or messaging, with help from the built-in AI tools.","tag":"Positioning · Messaging · Personas"},
+ {"art":"rubric","title":"Score and coach","text":"A built-in rubric sets the quality bar. It scores your draft and coaches you on exactly what to strengthen, so every asset reaches a high standard.","tag":"Quality standards, built in"},
  {"art":"commit","title":"Commit","text":"When you're happy with it, commit it. Just like a GitHub commit, it's saved as a clear, named version.","tag":"Your call, your timing"},
  {"art":"source","title":"Single source of truth","text":"The committed version lands in the central database as the official version everyone works from.","tag":"One version. No copies."},
  {"art":"notify","title":"Notify and flag","text":"Owners of related assets get notified, and their assets are flagged for revision, so nothing changes behind anyone's back.","tag":"People stay in control"},
  {"art":"iterate","title":"Keep iterating","text":"Start a new version whenever you like. The live version stays untouched while you work.","tag":"Draft safely"},
- {"art":"again","title":"Commit again","text":"When the new version is ready, commit it and the cycle starts over from the source of truth.","tag":"↺ Back to step 3"}
+ {"art":"again","title":"Commit again","text":"When the new version is ready, commit it and the cycle starts over from the source of truth.","tag":"↺ Back to step 4"}
 ],
 "finale":{"title":"The more you use it, the smarter it gets.","text":"Every loop is faster than the last. No starting over, just staying fresh."}}
 </script>
@@ -4270,6 +4271,29 @@ draft:`<svg viewBox="0 0 320 220" aria-hidden="true">
  <g transform="translate(252 46)"><path class="a-spark" d="${SPARK}" fill="${MINT}"/></g>
  <g transform="translate(276 86) scale(.5)"><path class="a-spark" style="--d:.5s" d="${SPARK}" fill="${MINT}"/></g>
  ${pill(84,180,92,'✦ AI ASSIST',MINT,NAVY)}
+</svg>`,
+
+/* 1b. Score and coach: rubric scorecard fills in, score badge, coaching tip */
+rubric:`<svg viewBox="0 0 320 220" aria-hidden="true">
+ <rect x="26" y="22" width="196" height="176" rx="14" fill="#fff"/>
+ <text x="44" y="50" font-size="13" font-weight="700" fill="${NAVY}" letter-spacing=".5">QUALITY RUBRIC</text>
+ ${[['Clarity',74,104,'.2s',1],['Differentiation',108,96,'.45s',1],['Proof points',142,58,'.7s',0],['Audience fit',176,100,'.95s',1]].map(([t,y,w,d,ok])=>`
+  <text x="44" y="${y-6}" font-size="11" font-weight="600" fill="${NAVY}" opacity=".75">${t}</text>
+  <rect x="44" y="${y}" width="120" height="7" rx="3.5" fill="${LINE}" opacity=".6"/>
+  <rect class="a-type" style="--d:${d}" x="44" y="${y}" width="${w}" height="7" rx="3.5" fill="${ok?TEAL:SKY}"/>
+  <g transform="translate(192 ${y+3})"><g class="a-pop" style="--d:${parseFloat(d)+.35}s"><circle r="10" fill="${ok?TEAL:'#ffb547'}"/>${ok?`<path d="M-4.5 0l3 3 6-6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`:`<text y="4.5" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">!</text>`}</g></g>`).join('')}
+ <g transform="translate(270 62)"><g class="a-pop" style="--d:1.3s">
+  <circle class="a-ring" r="30" fill="none" stroke="${MINT}" stroke-width="2.5"/>
+  <circle r="28" fill="${NAVY}" stroke="${MINT}" stroke-width="3"/>
+  <text y="6" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">88</text>
+  <text y="44" text-anchor="middle" font-size="10" font-weight="700" letter-spacing=".8" fill="${MINT}">SCORE</text>
+ </g></g>
+ <g class="a-pop" style="--d:1.6s">
+  <path d="M236 128h66a8 8 0 0 1 8 8v40a8 8 0 0 1-8 8h-56l-12 10v-10a8 8 0 0 1-6-8v-40a8 8 0 0 1 8-8z" fill="${MINT}"/>
+  <text x="246" y="146" font-size="10" font-weight="800" fill="${NAVY}" letter-spacing=".5">✦ COACH</text>
+  <text x="246" y="162" font-size="10.5" font-weight="600" fill="${NAVY}">Add a proof</text>
+  <text x="246" y="175" font-size="10.5" font-weight="600" fill="${NAVY}">point here</text>
+ </g>
 </svg>`,
 
 /* 2. Commit: asset drops into a new commit on the history line */
