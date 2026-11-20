@@ -283,12 +283,134 @@ body{background:#f5f5f6;color:#0e0923}
 .st .finale.on .ds-glow{transition:opacity 1.2s;transition-delay:1.6s;opacity:1}
 @media(prefers-reduced-motion:reduce){.st .finale.on .ds-chip{animation:none;opacity:0}.st .finale.on .ds-line,.st .finale.on .ds-done{transition:none}}
 </style>
+<style>
+/* ---------- Pitch sections: why now, on the new stack, measures, ask ---------- */
+.pv{--navy:#0a0a49;--blue:#0068af;--teal:#00b2a1;--mint:#aefff3;--muted:#666273;--line:#dfe3ea}
+.pv-why{padding:76px clamp(20px,8vw,120px);background:#fff}
+.pv-wrap{max-width:1180px;margin:auto}
+.pv h2{margin:0;color:var(--navy);font-size:clamp(30px,4vw,46px);line-height:1.08;font-weight:400;letter-spacing:-.035em;text-wrap:balance;max-width:820px}
+.pv .lead{max-width:720px;margin:16px 0 0;color:var(--muted);font-size:17px;line-height:1.65}
+.pv-shift{margin-top:40px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch}
+.pv-col{min-width:0;border-radius:24px;padding:28px 30px}
+.pv-col.then{background:#f5f5f6;border:1px solid var(--line)}
+.pv-col.now{background:linear-gradient(120deg,#0068af,#0a0a49);color:#fff}
+.pv-col h3{margin:0 0 6px;font-size:22px;font-weight:500;letter-spacing:-.01em}
+.pv-col.then h3{color:var(--navy)}
+.pv-col .tag{display:inline-block;margin-bottom:14px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.pv-col.then .tag{color:var(--blue)}.pv-col.now .tag{color:var(--mint)}
+.pv-col ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.pv-col li{position:relative;padding-left:22px;font-size:15px;line-height:1.5}
+.pv-col.then li{color:var(--muted)}.pv-col.now li{color:rgba(255,255,255,.88)}
+.pv-col li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%}
+.pv-col.then li::before{background:#c9d3e3}.pv-col.now li::before{background:var(--teal)}
+.pv-arrow{display:grid;place-items:center;color:var(--teal)}
+.pv-arrow svg{width:44px;height:44px}
+.pv-quote{margin:40px 0 0;padding:26px 0 0;border-top:2px solid var(--teal);max-width:860px;color:var(--navy);font-size:clamp(22px,2.6vw,30px);line-height:1.3;letter-spacing:-.02em;font-weight:400}
+.pv-quote b{font-weight:600;color:var(--blue)}
+
+.pv-stack{padding:82px clamp(20px,8vw,120px);background:#f5f5f6}
+.pv-grid{margin-top:40px;display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+.pv-panel{min-width:0;border-radius:28px;padding:30px}
+.pv-panel.base{background:#fff;border:1px solid var(--line)}
+.pv-panel.ours{background:#0a0a49;color:#fff}
+.pv-panel h3{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.pv-panel.base h3{color:var(--blue)}.pv-panel.ours h3{color:var(--mint)}
+.pv-panel .sub{margin:0 0 20px;font-size:14px;line-height:1.5}
+.pv-panel.base .sub{color:var(--muted)}.pv-panel.ours .sub{color:rgba(255,255,255,.7)}
+.pv-row{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.pv-panel.ours .pv-row{border-top-color:rgba(255,255,255,.16)}
+.pv-row b{font-size:15px;font-weight:600}
+.pv-panel.base .pv-row b{color:var(--navy)}
+.pv-row span{font-size:14px;line-height:1.55}
+.pv-panel.base .pv-row span{color:var(--muted)}.pv-panel.ours .pv-row span{color:rgba(255,255,255,.84)}
+.pv-panel.ours .pv-row b{color:#fff;display:flex;gap:10px;align-items:baseline}
+.pv-panel.ours .pv-row b i{font-style:normal;font-size:11px;font-weight:700;color:var(--mint);letter-spacing:.08em}
+.pv-zero-band{padding:40px clamp(20px,8vw,120px);background:#fff}
+.pv-zero{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:20px 24px;border-radius:20px;background:linear-gradient(110deg,#eaf6ff,#dffffa)}
+.pv-zero strong{color:var(--navy);font-size:17px;font-weight:600}
+.pv-zero span{color:var(--muted);font-size:15px;line-height:1.5;flex:1 1 320px;min-width:0}
+.pv-chip{flex:none;padding:8px 14px;border-radius:999px;background:var(--navy);color:var(--mint);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+
+.pv-measure{padding:76px clamp(20px,8vw,120px);background:#0a0a49;color:#fff}
+.pv-measure h2{color:#fff}
+.pv-measure .lead{color:rgba(255,255,255,.75)}
+.pv-metrics{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pv-metric{padding-top:18px;border-top:1px solid rgba(255,255,255,.36);min-width:0}
+.pv-metric .k{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--mint);text-transform:uppercase;margin-bottom:10px}
+.pv-metric h3{margin:0 0 8px;font-size:21px;font-weight:500;letter-spacing:-.01em}
+.pv-metric p{margin:0;color:rgba(255,255,255,.8);font-size:14px;line-height:1.6}
+
+.pv-ask{padding:72px clamp(20px,8vw,120px);background:linear-gradient(110deg,#eaf6ff,#dffffa)}
+.pv-ask .pv-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.pv-ask ol{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:ask}
+.pv-ask li{counter-increment:ask;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;background:#fff;border-radius:18px;padding:18px 20px;box-shadow:0 18px 36px -28px rgba(10,10,73,.45)}
+.pv-ask li::before{content:counter(ask);width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.pv-ask li em{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:2px}
+.pv-ask li b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.pv-ask li span{color:var(--muted);font-size:14px;line-height:1.55}
+@media(max-width:860px){.pv-shift{grid-template-columns:1fr}.pv-arrow svg{transform:rotate(90deg)}.pv-grid,.pv-ask .pv-wrap{grid-template-columns:1fr}.pv-metrics{grid-template-columns:1fr}}
+@media(max-width:520px){.pv-zero-band{padding:32px 20px}.pv-why,.pv-stack,.pv-measure,.pv-ask{padding:56px 20px}.pv-row{grid-template-columns:1fr;gap:4px}.pv-col,.pv-panel{padding:22px}}
+</style>
+<style>
+/* ---------- Phones: step timelines become a swipeable row ---------- */
+@media(max-width:760px){
+.st.tl{height:auto!important}
+.st .sticky{position:relative;height:auto;min-height:0;overflow:visible;padding:28px 0 32px}
+.st .rail{position:relative;height:22px;margin:0 20px 18px;transform:none!important;opacity:1!important}
+.st .progress{left:0;right:0;top:9px}
+.st .dots{left:0;right:0;top:2px}
+.st .track{position:static;transform:none!important;opacity:1!important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;gap:12px;padding:4px 20px 10px;scroll-padding:0 20px;scrollbar-width:none;align-items:stretch;touch-action:pan-x pan-y}
+.st .track::-webkit-scrollbar{display:none}
+.st .track::after{content:"";flex:0 0 8px}
+.st .card{width:calc(100vw - 40px);scroll-snap-align:center;scroll-snap-stop:always;transform:none;opacity:.5}
+.st .card.on{opacity:1;transform:none}
+.st .fin-slide{flex:none;width:calc(100vw - 40px);scroll-snap-align:center;scroll-snap-stop:always;display:flex;border-radius:26px;background:#fff;box-shadow:0 30px 60px -30px rgba(10,10,73,.45)}
+.st .fin-slide .finale{position:relative;inset:auto;opacity:1;pointer-events:auto;width:100%;padding:28px 16px}
+.st .fin-slide .finale h2{font-size:26px;margin-top:18px}
+.st .fin-slide .finale p{font-size:15px}
+.st .fin-slide .loops{width:min(220px,58vw)}
+.st .fin-slide .ld-tiles,.st .fin-slide .ds-fin{width:100%}
+.st .hint{position:static;transform:none;text-align:center;margin:16px 20px 0;opacity:1!important;white-space:normal}
+}
+<style>
+/* ---------- Accessibility ---------- */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.gs-tools,.gs-editor{display:none!important}
+.st .track:focus-visible{outline:3px solid #0068af;outline-offset:2px;border-radius:30px}
+@media(max-width:760px){.st .card{opacity:1}}
+.st.still{height:auto!important}
+.st.still .sticky{position:relative;height:auto;min-height:0;overflow:visible;padding:48px 0 64px}
+.st.still .rail{display:none}
+.pv-zero .pv-chip{color:var(--mint);flex:none}
+.st.still .track{position:static;flex-direction:column;align-items:center;gap:28px;transform:none!important;opacity:1!important;padding:0 20px}
+.st.still .card{opacity:1;transform:none}
+.st.still .finale{position:relative;inset:auto;opacity:1;pointer-events:auto;padding:48px 24px 0}
+.st.still .hint{display:none}
+@media (prefers-reduced-motion: reduce){
+ .st *,.st *::before,.st *::after,.pv *{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+ html{scroll-behavior:auto!important}
+}
+</style>
 </head>
 <body>
 <header class="bp-top"><span>BRIDGE PARTNERS</span><a href="#workspace">Explore the workspace ↓</a></header>
+<main id="main">
 <section class="bp-hero" aria-label="Product Marketing OS banner">
 <svg class="bp-hero-art" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="bpLine" x1="0" x2="1"><stop stop-color="#00B2A1" stop-opacity=".9"/><stop offset="1" stop-color="#7DD4FF" stop-opacity=".15"/></linearGradient></defs><path d="M110 440 C270 90 560 90 760 440" fill="none" stroke="url(#bpLine)" stroke-width="3"/><path d="M160 440 L280 250 M270 440 L350 190 M390 440 L420 160 M520 440 L490 190 M640 440 L550 250" stroke="#fff" stroke-opacity=".28"/><path d="M90 350 H810 M150 285 H750 M230 220 H680" stroke="#fff" stroke-opacity=".16"/><g fill="#AEFFF3"><circle cx="280" cy="250" r="5"/><circle cx="420" cy="160" r="5"/><circle cx="550" cy="250" r="5"/></g></svg>
-<div class="bp-hero-copy"><p class="bp-eyebrow">A connected AI workspace for product marketing</p><h1>From product truth to market impact.</h1><p>Connect the intelligence, decisions, and AI tools that help product marketing teams bring a clear story to market and learn from what happens next.</p></div></section>
+<div class="bp-hero-copy"><p class="bp-eyebrow">A connected AI workspace for product marketing</p><h1>Copilot can write a pitch deck in 30 seconds.</h1><p>The question is whether it's saying the right thing, and today nobody can tell you that. This workspace keeps every asset tied to strategy, flags drift the moment it happens, and shows the health of the whole portfolio at a glance.</p></div></section>
+<section class="pv pv-why" aria-label="Why now"><div class="pv-wrap">
+<p class="bp-eyebrow" style="color:#0068af">Why now</p>
+<h2>AI made content infinite. The bottleneck moved.</h2>
+<p class="lead">The new Copilot experiences make drafting a deck, an ebook or a web page nearly free. That's good news, and it creates a new problem: more assets, built faster, from strategy that keeps changing.</p>
+<div class="pv-shift">
+ <div class="pv-col then"><span class="tag">The old bottleneck</span><h3>Making content</h3><ul>
+  <li>Weeks to draft a messaging framework</li><li>Decks and ebooks built by hand, one at a time</li><li>Limited by how many PMMs you have</li></ul></div>
+ <div class="pv-arrow" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h26M24 12l10 10-10 10"/></svg></div>
+ <div class="pv-col now"><span class="tag">The new bottleneck</span><h3>Keeping it true</h3><ul>
+  <li>Which messaging framework is the current one?</li><li>When strategy changes, which decks and pages are now wrong?</li><li>Is the customer evidence approved, and is it still fresh?</li></ul></div>
+</div>
+<p class="pv-quote">The job is no longer making content. <b>It's keeping every asset true to strategy</b>, at the speed AI now writes.</p>
+</div></section>
 <section class="bp-stack-intro" id="workspace"><p class="bp-eyebrow" style="color:#0068af">The connected workspace</p><h2>One source of truth for every go-to-market decision.</h2><p>Explore how shared intelligence, specialist capabilities, and connected execution fit together in a product marketing agentic operating system.</p></section>
 <!--
   ==========================================================================
@@ -322,7 +444,7 @@ body{background:#f5f5f6;color:#0e0923}
     },
     {
       "title": "Data & Integrations",
-      "description": "Connects to the systems you already use: [CoWork], [Copilot], [Agents] you or others have created and data warehouses, with permissions intact.",
+      "description": "Connects to the systems you already use: [Microsoft IQ], [Copilot], [Copilot Workspaces], [Agents] you or others have created and data warehouses, with permissions intact.",
       "tiles": []
     },
     {
@@ -468,7 +590,49 @@ body{background:#f5f5f6;color:#0e0923}
   <div class="hint" id="ld-hint">Scroll to see the leader's view ↓</div>
  </div>
 </section>
-<section class="bp-outcomes"><p class="bp-eyebrow">What changes</p><h2>More strategic focus. A clearer story. Stronger market follow-through.</h2><div class="bp-outcome-row"><article class="bp-outcome"><h3>Better decisions</h3><p>Connect market signals and product context to the choices that shape go-to-market strategy.</p></article><article class="bp-outcome"><h3>Consistent activation</h3><p>Help teams carry a shared narrative into launch, campaign, partner, and seller work.</p></article><article class="bp-outcome"><h3>Continuous learning</h3><p>Make results useful to future positioning, execution, and investment decisions.</p></article></div></section><section class="bp-close"><h2>Every product marketing cycle should make the next one smarter.</h2><p>Build a connected way to understand the market, bring products to it, and learn from the response.</p></section><footer class="bp-footer"><span>Bridge Partners</span><span>Product Marketing OS · North star concept</span></footer>
+<section class="pv pv-stack" aria-label="On the new stack"><div class="pv-wrap">
+<p class="bp-eyebrow" style="color:#0068af">Built on the new stack, not against it</p>
+<h2>Ignite gave us the platform. This is the marketing intelligence that runs on it.</h2>
+<p class="lead">Microsoft IQ, Copilot Workspaces and Autopilot make this workspace stronger. They give every team a powerful canvas. Marketing still needs a system that knows what good looks like and what's current.</p>
+<div class="pv-grid">
+ <div class="pv-panel base"><h3>What the platform gives every team</h3><p class="sub">General-purpose, available to everyone</p>
+  <div class="pv-row"><b>Microsoft IQ</b><span>Shared context on how people work and what the business data means</span></div>
+  <div class="pv-row"><b>Copilot Workspaces</b><span>A shared space where teams and agents work on a project together</span></div>
+  <div class="pv-row"><b>Autopilot</b><span>Long-running agents for recurring tasks</span></div>
+  <div class="pv-row"><b>Office in Copilot and Copilot Code</b><span>Drafting documents and building simple apps from a prompt</span></div>
+ </div>
+ <div class="pv-panel ours"><h3>What this workspace adds for marketing</h3><p class="sub">The parts no general-purpose tool knows</p>
+  <div class="pv-row"><b>Lineage</b><span>Every deck, ebook and page knows which messaging framework it came from. When the framework changes, its owners get flagged.</span></div>
+  <div class="pv-row"><b>Inheritance</b><span>Category messaging flows down to product messaging, so the story stays consistent across the portfolio.</span></div>
+  <div class="pv-row"><b>Measurable quality</b><span>A rubric scores each strategy asset and coaches the PMM on what to strengthen.</span></div>
+  <div class="pv-row"><b>Governance</b><span>Freshness cadences, a leader dashboard, customer evidence tracking and CELA approvals in one place.</span></div>
+ </div>
+</div>
+
+</div></section>
+
+<section class="pv pv-measure" aria-label="What leaders will measure"><div class="pv-wrap">
+<p class="bp-eyebrow">What leaders will measure</p>
+<h2>Three numbers a marketing leader can report upward.</h2>
+<div class="pv-metrics">
+ <article class="pv-metric"><span class="k">Speed</span><h3>Time to launch-ready messaging</h3><p>How long from product brief to a scored, committed messaging framework the field can use.</p></article>
+ <article class="pv-metric"><span class="k">Freshness</span><h3>Share of the portfolio that's current</h3><p>Strategy assets updated within their cadence, and downstream assets with no open flags.</p></article>
+ <article class="pv-metric"><span class="k">Consistency</span><h3>Assets traced to approved strategy</h3><p>Decks, pages and ebooks that link back to a committed framework instead of a copy of a copy.</p></article>
+</div>
+</div></section>
+
+<section class="pv pv-ask" aria-label="Proposed next step"><div class="pv-wrap">
+ <div><p class="bp-eyebrow" style="color:#0068af">Proposed next step</p><h2>Keep every asset true, at the speed AI now writes.</h2><p class="lead">A focused pilot that runs the same Know, Shape, Activate, Learn cycle the workspace is built on, and ends on the lineage moment: a compete agent flags a messaging framework, the owner updates it, and every downstream deck and ebook gets flagged for review.</p></div>
+ <ol>
+  <li><div><em>Know</em><b>Connect what we already know</b><span>Pick two product areas and bring in their research, usage data, customer feedback and win/loss notes.</span></div></li>
+  <li><div><em>Shape</em><b>Commit the strategy</b><span>Build and score their messaging frameworks with the rubric, then set a freshness cadence for each.</span></div></li>
+  <li><div><em>Activate</em><b>Plan the rollout</b><span>Bring in Prosci-certified change management to stick the landing, so teams adopt the workspace and keep using it.</span></div></li>
+  <li><div><em>Learn</em><b>Close the loop</b><span>Connect an existing compete agent to flag drift, and report the three measures now and again after one quarter.</span></div></li>
+ </ol>
+</div></section>
+<section class="pv pv-zero-band" aria-label="Customer Zero"><div class="pv-wrap"><div class="pv-zero"><span class="pv-chip">Customer Zero</span><strong>Microsoft marketing, running like a Frontier Firm.</strong><span>Structured, governed messaging becomes trusted context that Copilot and every agent in the company can ground on.</span></div></div></section>
+</main>
+<footer class="bp-footer"><span>Bridge Partners</span><span>Product Marketing OS · North star concept</span></footer>
 
 <aside class="gs-editor" id="gs-editor" aria-label="Edit labels">
   <div class="ed-head">
@@ -4532,7 +4696,34 @@ const sec=document.getElementById('st-timeline'),cards=[...track.children],ds=[.
 const bar=document.getElementById('st-bar'),fin=document.getElementById('st-finale'),hint=document.getElementById('st-hint'),rail=document.getElementById('st-rail');
 const FIN=0.84; // share of the scroll used by the steps; the rest is the finale
 let wasDone=false;
-function update(){
+const MQ=matchMedia('(max-width: 760px)'),RM=matchMedia('(prefers-reduced-motion: reduce)');let slide=null;const hintText=hint.textContent;
+rail.setAttribute('aria-hidden','true');
+cards.forEach((c,i)=>{const n=c.querySelector('.n');if(n){n.setAttribute('aria-hidden','true');const sr=document.createElement('span');sr.className='sr-only';sr.textContent='Step '+(i+1)+' of '+cards.length;n.after(sr);}});
+function still(){cards.forEach(c=>c.classList.add('on'));ds.forEach(d=>d.classList.add('on'));bar.style.width='100%';fin.classList.add('on');track.style.transform='';rail.style.transform='';track.style.opacity='';rail.style.opacity='';if(typeof rings!=='undefined'){rings.forEach(([c])=>{c.style.strokeDashoffset=0;});}}
+function setMode(){
+ const m=MQ.matches;
+ if(m&&!slide){slide=document.createElement('div');slide.className='fin-slide';track.appendChild(slide);slide.appendChild(fin);}
+ else if(!m&&slide){hint.parentNode.insertBefore(fin,hint);slide.remove();slide=null;track.scrollLeft=0;}
+ sec.classList.toggle('swipe',m);
+ sec.classList.toggle('still',RM.matches&&!m);
+ if(m){track.tabIndex=0;track.setAttribute('role','region');track.setAttribute('aria-label',(sec.getAttribute('aria-label')||'Steps')+'. Swipe or use the arrow keys to move between steps.');}
+ else{track.removeAttribute('tabindex');track.removeAttribute('role');track.removeAttribute('aria-label');}
+ hint.textContent=m?'Swipe to move through the steps →':hintText;
+ if(m){track.style.transform='';rail.style.transform='';track.style.opacity='';rail.style.opacity='';}
+}
+function swipe(){
+ const items=[...track.children],stepW=items.length>1?items[1].offsetLeft-items[0].offsetLeft:1;
+ const idx=Math.max(0,Math.min(S.length,Math.round(track.scrollLeft/stepW))),done=idx>=S.length;
+ cards.forEach((c,i)=>c.classList.toggle('on',i===idx));
+ ds.forEach((d,i)=>d.classList.toggle('on',i<=idx));
+ bar.style.width=Math.min(1,idx/Math.max(1,S.length-1))*100+'%';
+ fin.classList.toggle('on',done);
+ if(typeof rings!=='undefined'&&done!==wasDone){rings.forEach(([c,L])=>{c.style.strokeDashoffset=done?0:L;});wasDone=done;}
+}
+setMode();
+track.addEventListener('scroll',()=>{if(MQ.matches)swipe();},{passive:true});
+MQ.addEventListener('change',()=>{setMode();update();});RM.addEventListener('change',()=>{setMode();update();});
+function update(){if(sec.classList.contains('still'))return still();if(MQ.matches)return swipe();
  const r=sec.getBoundingClientRect(),max=Math.max(1,sec.offsetHeight-innerHeight);
  const p=Math.min(1,Math.max(0,-r.top/max));
  const sp=Math.min(1,p/FIN), pos=sp*(S.length-1), act=Math.round(pos);
@@ -4672,7 +4863,34 @@ cfg.finale.tiles.forEach(([name,st],i)=>{
 const sec=document.getElementById('ld-timeline'),cards=[...track.children],ds=[...dots.children];
 const bar=document.getElementById('ld-bar'),fin=document.getElementById('ld-finale'),hint=document.getElementById('ld-hint'),rail=document.getElementById('ld-rail');
 const FIN=0.8;
-function update(){
+const MQ=matchMedia('(max-width: 760px)'),RM=matchMedia('(prefers-reduced-motion: reduce)');let slide=null;const hintText=hint.textContent;
+rail.setAttribute('aria-hidden','true');
+cards.forEach((c,i)=>{const n=c.querySelector('.n');if(n){n.setAttribute('aria-hidden','true');const sr=document.createElement('span');sr.className='sr-only';sr.textContent='Step '+(i+1)+' of '+cards.length;n.after(sr);}});
+function still(){cards.forEach(c=>c.classList.add('on'));ds.forEach(d=>d.classList.add('on'));bar.style.width='100%';fin.classList.add('on');track.style.transform='';rail.style.transform='';track.style.opacity='';rail.style.opacity='';if(typeof rings!=='undefined'){rings.forEach(([c])=>{c.style.strokeDashoffset=0;});}}
+function setMode(){
+ const m=MQ.matches;
+ if(m&&!slide){slide=document.createElement('div');slide.className='fin-slide';track.appendChild(slide);slide.appendChild(fin);}
+ else if(!m&&slide){hint.parentNode.insertBefore(fin,hint);slide.remove();slide=null;track.scrollLeft=0;}
+ sec.classList.toggle('swipe',m);
+ sec.classList.toggle('still',RM.matches&&!m);
+ if(m){track.tabIndex=0;track.setAttribute('role','region');track.setAttribute('aria-label',(sec.getAttribute('aria-label')||'Steps')+'. Swipe or use the arrow keys to move between steps.');}
+ else{track.removeAttribute('tabindex');track.removeAttribute('role');track.removeAttribute('aria-label');}
+ hint.textContent=m?'Swipe to move through the steps →':hintText;
+ if(m){track.style.transform='';rail.style.transform='';track.style.opacity='';rail.style.opacity='';}
+}
+function swipe(){
+ const items=[...track.children],stepW=items.length>1?items[1].offsetLeft-items[0].offsetLeft:1;
+ const idx=Math.max(0,Math.min(S.length,Math.round(track.scrollLeft/stepW))),done=idx>=S.length;
+ cards.forEach((c,i)=>c.classList.toggle('on',i===idx));
+ ds.forEach((d,i)=>d.classList.toggle('on',i<=idx));
+ bar.style.width=Math.min(1,idx/Math.max(1,S.length-1))*100+'%';
+ fin.classList.toggle('on',done);
+ if(typeof rings!=='undefined'&&done!==wasDone){rings.forEach(([c,L])=>{c.style.strokeDashoffset=done?0:L;});wasDone=done;}
+}
+setMode();
+track.addEventListener('scroll',()=>{if(MQ.matches)swipe();},{passive:true});
+MQ.addEventListener('change',()=>{setMode();update();});RM.addEventListener('change',()=>{setMode();update();});
+function update(){if(sec.classList.contains('still'))return still();if(MQ.matches)return swipe();
  const r=sec.getBoundingClientRect(),max=Math.max(1,sec.offsetHeight-innerHeight);
  const p=Math.min(1,Math.max(0,-r.top/max));
  const sp=Math.min(1,p/FIN), pos=sp*(S.length-1), act=Math.round(pos);
@@ -4837,7 +5055,34 @@ document.getElementById('ds-fin').innerHTML=`<svg viewBox="0 0 560 300" aria-hid
 const sec=document.getElementById('ds-timeline'),cards=[...track.children],ds=[...dots.children];
 const bar=document.getElementById('ds-bar'),fin=document.getElementById('ds-finale'),hint=document.getElementById('ds-hint'),rail=document.getElementById('ds-rail');
 const FIN=0.8;
-function update(){
+const MQ=matchMedia('(max-width: 760px)'),RM=matchMedia('(prefers-reduced-motion: reduce)');let slide=null;const hintText=hint.textContent;
+rail.setAttribute('aria-hidden','true');
+cards.forEach((c,i)=>{const n=c.querySelector('.n');if(n){n.setAttribute('aria-hidden','true');const sr=document.createElement('span');sr.className='sr-only';sr.textContent='Step '+(i+1)+' of '+cards.length;n.after(sr);}});
+function still(){cards.forEach(c=>c.classList.add('on'));ds.forEach(d=>d.classList.add('on'));bar.style.width='100%';fin.classList.add('on');track.style.transform='';rail.style.transform='';track.style.opacity='';rail.style.opacity='';if(typeof rings!=='undefined'){rings.forEach(([c])=>{c.style.strokeDashoffset=0;});}}
+function setMode(){
+ const m=MQ.matches;
+ if(m&&!slide){slide=document.createElement('div');slide.className='fin-slide';track.appendChild(slide);slide.appendChild(fin);}
+ else if(!m&&slide){hint.parentNode.insertBefore(fin,hint);slide.remove();slide=null;track.scrollLeft=0;}
+ sec.classList.toggle('swipe',m);
+ sec.classList.toggle('still',RM.matches&&!m);
+ if(m){track.tabIndex=0;track.setAttribute('role','region');track.setAttribute('aria-label',(sec.getAttribute('aria-label')||'Steps')+'. Swipe or use the arrow keys to move between steps.');}
+ else{track.removeAttribute('tabindex');track.removeAttribute('role');track.removeAttribute('aria-label');}
+ hint.textContent=m?'Swipe to move through the steps →':hintText;
+ if(m){track.style.transform='';rail.style.transform='';track.style.opacity='';rail.style.opacity='';}
+}
+function swipe(){
+ const items=[...track.children],stepW=items.length>1?items[1].offsetLeft-items[0].offsetLeft:1;
+ const idx=Math.max(0,Math.min(S.length,Math.round(track.scrollLeft/stepW))),done=idx>=S.length;
+ cards.forEach((c,i)=>c.classList.toggle('on',i===idx));
+ ds.forEach((d,i)=>d.classList.toggle('on',i<=idx));
+ bar.style.width=Math.min(1,idx/Math.max(1,S.length-1))*100+'%';
+ fin.classList.toggle('on',done);
+ if(typeof rings!=='undefined'&&done!==wasDone){rings.forEach(([c,L])=>{c.style.strokeDashoffset=done?0:L;});wasDone=done;}
+}
+setMode();
+track.addEventListener('scroll',()=>{if(MQ.matches)swipe();},{passive:true});
+MQ.addEventListener('change',()=>{setMode();update();});RM.addEventListener('change',()=>{setMode();update();});
+function update(){if(sec.classList.contains('still'))return still();if(MQ.matches)return swipe();
  const r=sec.getBoundingClientRect(),max=Math.max(1,sec.offsetHeight-innerHeight);
  const p=Math.min(1,Math.max(0,-r.top/max));
  const sp=Math.min(1,p/FIN), pos=sp*(S.length-1), act=Math.round(pos);
